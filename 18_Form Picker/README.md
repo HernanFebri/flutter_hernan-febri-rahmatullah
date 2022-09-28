@@ -5,7 +5,7 @@ Nomor Urut : 1_010FLC_34
 Nama : Hernan Febri Rahmatullah
 
 ## Summary
-###-- Basic Layout --
+### -- Basic Layout --
 #### 1. Row dan Column Classes
 Row dan Column adalah kelas yang berisi dan meletakkan widget. Row menata widgetnya secara horizontal, dan Column menata widgetnya secara vertikal.
 #### 2. MainAxisAlignment Property
