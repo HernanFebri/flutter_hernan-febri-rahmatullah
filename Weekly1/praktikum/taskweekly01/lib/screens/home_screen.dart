@@ -9,20 +9,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final formKey = GlobalKey<FormState>();
-  var pesan = {
-    'fname': '',
-    'lname': '',
-    'email': '',
-    'msg': '',
-  };
+  final _uName = TextEditingController();
+  final _email = TextEditingController();
+  final _msg = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: Image.network(
-          "https://o.remove.bg/downloads/76358c4c-c586-4b2b-8ed8-a7ee76a56a74/12.BANYUMAS-removebg-preview.png",
+          "https://1.bp.blogspot.com/-334T0rwvq-s/XU5a7R3Fi2I/AAAAAAAAAZU/6Dj7U8SGdagO7EW_hj3e-luObPa83b43wCLcBGAs/s1600/12.BANYUMAS.png",
           fit: BoxFit.fill,
           width: 10,
           height: 10,
@@ -81,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   Text(
-                    "Welcome to Batturaden",
+                    "Welcome to Baturraden",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 25,
@@ -107,81 +103,52 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(
               height: 10,
             ),
-            const Text(
-              "Contact Us",
-              style: TextStyle(
-                fontSize: 25,
-                fontWeight: FontWeight.bold,
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Text(
+                "Contact Us",
+                style: TextStyle(
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
-            TextFormField(
-              decoration: const InputDecoration(label: Text("First Name")),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Silahkan input First Name yang valid";
-                }
-                return null;
-              },
-              onSaved: (newValue) {
-                if (newValue != null) pesan['fName'] = newValue;
-              },
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _uName,
+                decoration: const InputDecoration(
+                  label: Text("Username"),
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
-            TextFormField(
-              decoration: const InputDecoration(label: Text("Last Name")),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Silahkan input Last Name yang valid";
-                }
-                return null;
-              },
-              onSaved: (newValue) {
-                if (newValue != null) pesan['lName'] = newValue;
-              },
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _email,
+                decoration: const InputDecoration(
+                  label: Text("Email"),
+                  border: OutlineInputBorder(),
+                ),
+              ),
             ),
             const SizedBox(
               height: 10,
             ),
-            TextFormField(
-              decoration: const InputDecoration(label: Text("Email")),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Silahkan input Email yang valid";
-                }
-                return null;
-              },
-              onSaved: (newValue) {
-                if (newValue != null) pesan['email'] = newValue;
-              },
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            TextFormField(
-              maxLines: 3,
-              decoration: const InputDecoration(label: Text("Message")),
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return "Silahkan input Message yang valid";
-                }
-                return null;
-              },
-              onSaved: (newValue) {
-                if (newValue != null) pesan['msg'] = newValue;
-              },
-              keyboardType: TextInputType.name,
-              textInputAction: TextInputAction.next,
+            Container(
+              margin: const EdgeInsets.all(8.0),
+              child: TextFormField(
+                controller: _msg,
+                decoration: const InputDecoration(
+                    label: Text("Message"), border: OutlineInputBorder()),
+              ),
             ),
             const SizedBox(
               height: 10,
@@ -191,16 +158,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 showDialog(
                   context: context,
                   builder: (context) => AlertDialog(
-                    content: const Text('Are you sure?'),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        child: const Text('NO'),
+                    content: SizedBox(
+                      height: 150,
+                      width: 100,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text('Username :  ${_uName.text}'),
+                          Text('Email :  ${_email.text}'),
+                          Text('Message :  ${_msg.text}'),
+                        ],
                       ),
-                      TextButton(onPressed: () {}, child: const Text('YES'))
-                    ],
+                    ),
                   ),
                 );
               },
