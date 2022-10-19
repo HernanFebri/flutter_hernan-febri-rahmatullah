@@ -19,11 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // tambahPesan = ModalRoute.of(context)!.settings.arguments as Function(Data);
     return Scaffold(
       appBar: AppBar(
         leading: Image.network(
-          "https://toppng.com/uploads/preview/logo-kabupaten-banyumas-11550712260np81vzo9l1.png",
+          "https://o.remove.bg/downloads/76358c4c-c586-4b2b-8ed8-a7ee76a56a74/12.BANYUMAS-removebg-preview.png",
           fit: BoxFit.fill,
           width: 10,
           height: 10,
@@ -189,13 +188,24 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                if (formKey.currentState != null &&
-                    formKey.currentState!.validate()) {
-                  // _onSubmit();
-                }
+                showDialog(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    content: const Text('Are you sure?'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: const Text('NO'),
+                      ),
+                      TextButton(onPressed: () {}, child: const Text('YES'))
+                    ],
+                  ),
+                );
               },
               child: const Text("Submit"),
-            ),
+            )
           ],
         ),
       ),
