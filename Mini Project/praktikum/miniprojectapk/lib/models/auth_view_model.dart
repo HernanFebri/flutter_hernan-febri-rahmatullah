@@ -11,6 +11,6 @@ class AuthViewModel extends ChangeNotifier {
         .onError((error, stackTrace) {
       print("Error ${error.toString()}");
     });
-    notifyListeners();
+    // notifyListeners();
   }
 }

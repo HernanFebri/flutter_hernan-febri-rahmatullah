@@ -7,7 +7,6 @@ import 'package:miniprojectapk/screens/penerima_donor.dart';
 import 'package:miniprojectapk/screens/profile.dart';
 import 'package:miniprojectapk/screens/requirement.dart';
 import 'package:miniprojectapk/screens/signin_screen.dart';
-// import 'package:miniprojectapk/widgets/square.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -59,8 +58,33 @@ class HomeScreen extends StatelessWidget {
                 ),
                 title: const Text('Profile'),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Profile()));
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(seconds: 10),
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation,
+                          Widget child) {
+                        animation = CurvedAnimation(
+                            parent: animation, curve: Curves.easeInOut);
+
+                        return SlideTransition(
+                            position: Tween(
+                                    begin: const Offset(1.0, 0.0),
+                                    end: const Offset(0.0, 0.0))
+                                .animate(animation),
+                            child: child);
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation) {
+                        return Profile();
+                      },
+                    ),
+                  );
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Profile()));
                 },
               ),
               ListTile(
@@ -69,8 +93,33 @@ class HomeScreen extends StatelessWidget {
                 ),
                 title: const Text('Persyaratan Pendonor'),
                 onTap: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => Requirement()));
+                  Navigator.push(
+                    context,
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(seconds: 10),
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation,
+                          Widget child) {
+                        animation = CurvedAnimation(
+                            parent: animation, curve: Curves.easeInOut);
+
+                        return SlideTransition(
+                            position: Tween(
+                                    begin: const Offset(1.0, 0.0),
+                                    end: const Offset(0.0, 0.0))
+                                .animate(animation),
+                            child: child);
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation) {
+                        return Requirement();
+                      },
+                    ),
+                  );
+                  // Navigator.push(context,
+                  //     MaterialPageRoute(builder: (context) => Requirement()));
                 },
               ),
               ListTile(
@@ -116,8 +165,31 @@ class HomeScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Pendonor()),
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(seconds: 10),
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation,
+                          Widget child) {
+                        animation = CurvedAnimation(
+                            parent: animation, curve: Curves.easeInOutQuad);
+
+                        return ScaleTransition(
+                            scale: animation,
+                            alignment: Alignment.center,
+                            child: child);
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation) {
+                        return Pendonor();
+                      },
+                    ),
                   );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Pendonor()),
+                  // );
                 },
               ),
               ListTile(
@@ -142,30 +214,33 @@ class HomeScreen extends StatelessWidget {
                 onTap: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Requestblood()),
+                    PageRouteBuilder(
+                      transitionDuration: const Duration(seconds: 10),
+                      transitionsBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation,
+                          Widget child) {
+                        animation = CurvedAnimation(
+                            parent: animation, curve: Curves.easeInOutQuad);
+
+                        return ScaleTransition(
+                            scale: animation,
+                            alignment: Alignment.center,
+                            child: child);
+                      },
+                      pageBuilder: (BuildContext context,
+                          Animation<double> animation,
+                          Animation<double> secAnimation) {
+                        return Requestblood();
+                      },
+                    ),
                   );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) => Requestblood()),
+                  // );
                 },
-              ), // const SizedBox(
-              //   height: 50,
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => Pendonor()));
-              //   },
-              //   child: const Text('          Pendonor          '),
-              //   style: ElevatedButton.styleFrom(
-              //       primary: const Color.fromARGB(255, 240, 0, 15)),
-              // ),
-              // ElevatedButton(
-              //   onPressed: () {
-              //     Navigator.push(context,
-              //         MaterialPageRoute(builder: (context) => Requestblood()));
-              //   },
-              //   child: const Text('Membutuhkan Donor'),
-              //   style: ElevatedButton.styleFrom(
-              //       primary: const Color.fromARGB(255, 240, 0, 15)),
-              // ),
+              ),
             ],
           ),
         ),

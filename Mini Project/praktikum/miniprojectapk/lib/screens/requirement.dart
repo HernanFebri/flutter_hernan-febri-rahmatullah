@@ -5,13 +5,13 @@ class Requirement extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Persyaratan'),
-        backgroundColor: Color.fromARGB(255, 240, 0, 33),
+        title: const Text('Persyaratan'),
+        backgroundColor: const Color.fromARGB(255, 240, 0, 33),
         elevation: 4.0,
       ),
       body: Container(
         padding: const EdgeInsets.all(40),
-        child: Text(
+        child: const Text(
           'Persyaratan menjadi Pendonor atau Penerima Donor : \n\n\n'
           '1. Kondisi fisik harus dalam keadaan sehat, jasmani maupun rohani.\n\n'
           '2. Berusia 17-60 tahun. Namun, untuk remaja usia 17 tahun diperbolehkan menjadi donor darah, bila mendapat izin tertulis dari orangtua dan memenuhi persyaratan lain.\n\n'
