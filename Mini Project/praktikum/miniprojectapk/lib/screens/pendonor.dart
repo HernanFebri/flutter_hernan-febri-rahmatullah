@@ -1,4 +1,4 @@
-import '../reusable_widgets/square.dart';
+import '../widgets/square_widget.dart';
 import 'package:flutter/material.dart';
 
 class Pendonor extends StatelessWidget {

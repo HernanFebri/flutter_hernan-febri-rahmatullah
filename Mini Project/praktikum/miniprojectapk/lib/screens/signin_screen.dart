@@ -3,7 +3,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:miniprojectapk/provider/auth_view_model.dart';
-import 'package:miniprojectapk/reusable_widgets/reusable_widget.dart';
+import 'package:miniprojectapk/widgets/logo_widget.dart';
 import 'package:miniprojectapk/screens/home_screen.dart';
 import 'package:miniprojectapk/screens/signup_screen.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +22,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<AuthViewModel>(context);
     return Scaffold(
       body: Container(
         width: MediaQuery.of(context).size.width,
@@ -46,22 +47,108 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 Form(
                   key: formKey,
-                  child: reusableTextField("Enter Your Email", Icons.person,
-                      false, _emailTextController),
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        controller: _emailTextController,
+                        cursorColor: Colors.white,
+                        style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              Icons.email,
+                              color: Colors.white70,
+                            ),
+                            labelText: "Enter Your Email",
+                            labelStyle:
+                                TextStyle(color: Colors.white.withOpacity(0.9)),
+                            filled: true,
+                            floatingLabelBehavior: FloatingLabelBehavior.never,
+                            fillColor: Colors.white.withOpacity(0.3),
+                            border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30.0),
+                                borderSide: BorderSide(
+                                    width: 0, style: BorderStyle.none)),
+                            errorStyle: TextStyle(color: Colors.white)),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Jangan Dikosongkan";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      TextFormField(
+                        controller: _passwordTextController,
+                        obscureText: true,
+                        cursorColor: Colors.white,
+                        style: TextStyle(color: Colors.white.withOpacity(0.9)),
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(
+                            Icons.lock,
+                            color: Colors.white70,
+                          ),
+                          labelText: "Enter Your Password",
+                          labelStyle:
+                              TextStyle(color: Colors.white.withOpacity(0.9)),
+                          filled: true,
+                          floatingLabelBehavior: FloatingLabelBehavior.never,
+                          fillColor: Colors.white.withOpacity(0.3),
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              borderSide: BorderSide(
+                                  width: 0, style: BorderStyle.none)),
+                          errorStyle: TextStyle(color: Colors.white),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "Jangan Di Kosongkan";
+                          }
+                          return null;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        margin: const EdgeInsets.fromLTRB(0, 10, 0, 20),
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(90)),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if (formKey.currentState!.validate()) {
+                              setState(() {
+                                provider.SignIn(_emailTextController.text,
+                                    _passwordTextController.text);
+                              });
+                            }
+                          },
+                          style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.resolveWith(((states) {
+                                if (states.contains(MaterialState.pressed)) {
+                                  return Colors.black26;
+                                }
+                                return Color.fromARGB(255, 255, 255, 255);
+                              })),
+                              shape: MaterialStateProperty.all(
+                                  RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.circular(30)))),
+                          child: Text(
+                            "Sign In",
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ),
+                      signUpOption()
+                    ],
+                  ),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                reusableTextField("Enter Your Password", Icons.lock_outline,
-                    true, _passwordTextController),
-                const SizedBox(
-                  height: 20,
-                ),
-                signInSignUpButton(context, false, () {
-                  Provider.of<AuthViewModel>(context, listen: false).SignIn(
-                      _emailTextController.text, _passwordTextController.text);
-                }),
-                signUpOption()
               ],
             ),
           ),
