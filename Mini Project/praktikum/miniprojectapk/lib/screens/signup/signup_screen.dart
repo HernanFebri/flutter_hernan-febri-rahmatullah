@@ -3,8 +3,8 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:miniprojectapk/widgets/logo_widget.dart';
-import 'package:miniprojectapk/screens/home_screen.dart';
-import 'package:miniprojectapk/screens/signin_screen.dart';
+import 'package:miniprojectapk/screens/home/home_screen.dart';
+import 'package:miniprojectapk/screens/signin/signin_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

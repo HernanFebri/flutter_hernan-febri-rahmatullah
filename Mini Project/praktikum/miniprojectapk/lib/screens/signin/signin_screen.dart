@@ -4,7 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:miniprojectapk/models/auth_view_model.dart';
 import 'package:miniprojectapk/widgets/logo_widget.dart';
-import 'package:miniprojectapk/screens/signup_screen.dart';
+import 'package:miniprojectapk/screens/signup/signup_screen.dart';
 import 'package:provider/provider.dart';
 
 class SignInScreen extends StatefulWidget {
